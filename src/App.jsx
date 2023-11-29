@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { Link, Routes, Route, useMatch } from "react-router-dom";
+import CreateNew from "./components/CreateNew";
+import About from "./components/About";
+import Anecdote from "./components/Anecdote";
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
     <ul>
       {anecdotes.map((anecdote) => (
-        <li key={anecdote.id}>{anecdote.content}</li>
+        <li key={anecdote.id}>
+          <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
+        </li>
       ))}
     </ul>
   </div>
@@ -29,6 +35,11 @@ const App = () => {
     },
   ]);
 
+  const match = useMatch("/anecdotes/:id");
+  const anecdote = match
+    ? anecdotes.find((anecdote) => anecdote.id === Number(match.params.id))
+    : null;
+
   const [notification, setNotification] = useState("");
 
   const addNew = (anecdote) => {
@@ -49,9 +60,34 @@ const App = () => {
     setAnecdotes(anecdotes.map((a) => (a.id === id ? voted : a)));
   };
 
+  const padding = {
+    paddingRight: 5,
+  };
+
   return (
     <div>
-      <AnecdoteList anecdotes={anecdotes} />
+      <h1>Software anecdotes</h1>
+      <div>
+        <Link style={padding} to="/">
+          anecdotes
+        </Link>
+        <Link style={padding} to="/create">
+          create new
+        </Link>
+        <Link style={padding} to="/about">
+          about
+        </Link>
+      </div>
+
+      <Routes>
+        <Route path="/" element={<AnecdoteList anecdotes={anecdotes} />} />
+        <Route
+          path="/anecdotes/:id"
+          element={<Anecdote anecdote={anecdote} />}
+        />
+        <Route path="/create" element={<CreateNew />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 };
