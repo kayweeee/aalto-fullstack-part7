@@ -7,30 +7,6 @@
     {
       "id": 2,
       "content": "best feature ever <3"
-    },
-    {
-      "content": "is it working",
-      "id": 3
-    },
-    {
-      "content": "hi",
-      "id": 9764
-    },
-    {
-      "content": "nihao",
-      "id": 986
-    },
-    {
-      "content": "up",
-      "id": 2570
-    },
-    {
-      "content": "upas",
-      "id": 9886
-    },
-    {
-      "content": "hi",
-      "id": 8823
     }
   ],
   "persons": [
@@ -43,16 +19,6 @@
       "id": 2,
       "name": "hellas",
       "number": "012-123123"
-    },
-    {
-      "name": "me",
-      "number": "041-723-614625",
-      "id": 6517
-    },
-    {
-      "name": "me",
-      "number": "041-723-612653",
-      "id": 6509
     }
   ]
 }
